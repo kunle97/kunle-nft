@@ -5,7 +5,7 @@ const TeamCard = (props) => {
     <div className="col-md-4">
       <img className="team-member-img" src={props.src} />
       <div className="row">
-        <div className="col-2 align-self-center">
+        {/* <div className="col-2 align-self-center">
           <a
             className="social-link"
             href={props.fbLink}
@@ -38,8 +38,8 @@ const TeamCard = (props) => {
             <i className="fa fa-github social-link-icon" />
             <div className="social-link-effect" />
           </a>
-        </div>
-        <div className="col-10 align-self-center">
+        </div> */}
+        <div className="col-12 align-self-center">
           <h3 className="team-member-name">{props.name}</h3>
           <p className="team-member-desc">{props.desc}</p>
         </div>
