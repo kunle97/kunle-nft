@@ -73,6 +73,10 @@ const Landing = () => {
       console.log(
         `Your NFT has been successfully minted. \nContract Address: ${contractAddress} \nToken ID: ${tokenId} \nNFT Name: ${fullNFTName} \nNFT Description ${fullNFTDescription} \nView Full Collection at https://testnets.opensea.io/collection/pixelmon-qjoa3h8lg6`
       );
+      //Reset Mint form
+      setName("");
+      setDescription("");
+      setImage("assets/img/pixelmon/pixelmon15.svg");
     } catch (err) {
       console.error(err);
       alert("Somthing went wrong");
