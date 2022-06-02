@@ -103,6 +103,7 @@ const Landing = () => {
     <form onSubmit={onSubmit}>
       <div className="mt-3">
         <input
+          required
           type="text"
           className="border-[1px] p-2 text-lg border-black w-full form-control"
           placeholder="NFT Name"
@@ -112,6 +113,7 @@ const Landing = () => {
       </div>
       <div className="mt-3">
         <input
+          required
           type="text"
           className="border-[1px] p-2 text-lg border-black w-full form-control"
           placeholder="NFT Description"
@@ -121,6 +123,7 @@ const Landing = () => {
       </div>
       <div className="mt-3">
         <input
+          required
           type="file"
           className="border-[1px] p-2 text-lg border-black w-full"
           placeholder="file"
@@ -159,7 +162,7 @@ const Landing = () => {
           />
           <div className="container hero">
             <div className="row">
-              <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6 offset-xl-1 align-self-center">
+              <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6 align-self-center">
                 <h1>
                   PixelMon is here.&nbsp; Turn any image you want into an NFT.
                   No code required!
@@ -170,18 +173,24 @@ const Landing = () => {
                   Now!&quot;. Simple as that! Making NFTs couldn&apos;t be any
                   easier!
                 </p>
-                <button
-                  className="btn btn-primary header-button ui-button"
-                  type="button"
-                >
-                  Learn More
-                </button>
+                <a href="https://testnets.opensea.io/collection/pixelmon-qjoa3h8lg6">
+                  <button
+                    className="btn btn-primary header-button ui-button"
+                    type="button"
+                  >
+                    View on OpenSea
+                  </button>
+                </a>
                 <a className="header-link" href="#">
                   Join The Discord
                 </a>
               </div>
-              <div className="col-sm-12 col-md-6 col-lg-6 offset-lg-1 offset-xl-0  d-lg-block align-self-center">
-                <img src={image} width="100%" />
+              <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6 align-self-center">
+                <img
+                  src={image}
+                  width="70%"
+                  style={{ margin: "25px auto", display: "block" }}
+                />
 
                 {isAuthenticated ? mintNowButton : connectWalletButton}
               </div>
