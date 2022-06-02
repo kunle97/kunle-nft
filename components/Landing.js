@@ -21,32 +21,41 @@ const Landing = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [file, setFile] = useState("");
+  const [image, setImage] = useState("assets/img/pixelmon/pixelmon15.svg");
+
+  const onImageChange = (event) => {
+    setFile(event.target.files[0]);
+    if (event.target.files && event.target.files[0]) {
+      setImage(URL.createObjectURL(event.target.files[0]));
+    }
+  };
 
   const onSubmit = async (e) => {
     e.preventDefault();
     alert(
-      "Your NFT is being minted. Once you accept the transaction in Metamask the trasaction may take a little while to go through."
+      "Your NFT is being minted. Once you accept the transaction in Metamask the trasaction may take a few minutes to go through."
     );
 
-    //Custom params
-    var fourDigitNumber = Math.floor(1000 + Math.random() * 9000).toString();
-    var fullNFTName = `PixelMon #${fourDigitNumber}`;
-    console.log("Name: ", fullNFTName);
-
-    var fullNFTDescription = `Here is your brand new PixelMon! It's name is ${fullNFTName}. Say Hello!`;
-    console.log("Name: ", fullNFTDescription);
-    var NFTImageSVG = `https://avatars.dicebear.com/api/pixel-art/${fullNFTName}.svg`;
-
     try {
+      //Custom params
+      var fourDigitNumber = Math.floor(1000 + Math.random() * 9000).toString();
+      var fullNFTName = `PixelMon#${fourDigitNumber}`;
+      console.log("Name: ", fullNFTName);
+      setName(fullNFTName);
+      var fullNFTDescription = `Here is your brand new PixelMon! It's name is ${fullNFTName}. Say Hello!`;
+      setDescription(fullNFTDescription);
+      console.log("Desc: ", fullNFTDescription);
+      var NFTImageSVG = `https://avatars.dicebear.com/api/pixel-art/${fullNFTName}.svg`;
+
       //save image to ipfs
-      //   const file1 = new Moralis.File(file.name, file);
       const file1 = new Moralis.File(file.name, file);
+      // const file1 = new Moralis.File(file.name, file);
       await file1.saveIPFS();
       const file1url = file1.ipfs();
 
       //generate metadata for ipfs
-      const metadata = { fullNFTName, fullNFTDescription, image: file1url };
-      const file2 = new Moralis.File(`${fullNFTName}metadata.json`, {
+      const metadata = { name, description, image: file1url };
+      const file2 = new Moralis.File(`${name}metadata.json`, {
         base64: Buffer.from(JSON.stringify(metadata)).toString("base64"),
       });
       await file2.saveIPFS();
@@ -59,10 +68,10 @@ const Landing = () => {
         .send({ from: user.get("ethAddress") });
       const tokenId = response.events.Transfer.returnValues.tokenId;
       alert(
-        `Your NFT has been successfully minted. \nContract Address: ${contractAddress} \nToken ID: ${tokenId}`
+        `Your NFT has been successfully minted. \nContract Address: ${contractAddress} \nToken ID: ${tokenId} \nNFT Name: ${fullNFTName} \nNFT Description ${fullNFTDescription}`
       );
       console.log(
-        `Your NFT has been successfully minted. \nContract Address: ${contractAddress} \nToken ID: ${tokenId}`
+        `Your NFT has been successfully minted. \nContract Address: ${contractAddress} \nToken ID: ${tokenId} \nNFT Name: ${fullNFTName} \nNFT Description ${fullNFTDescription}`
       );
     } catch (err) {
       console.error(err);
@@ -92,13 +101,31 @@ const Landing = () => {
   );
   const mintNowButton = (
     <form onSubmit={onSubmit}>
+      {/* <div className="mt-3">
+        <input
+          type="text"
+          className="border-[1px] p-2 text-lg border-black w-full form-control"
+          placeholder="Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </div>
+      <div className="mt-3">
+        <input
+          type="text"
+          className="border-[1px] p-2 text-lg border-black w-full form-control"
+          placeholder="Description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+      </div> */}
       <div className="mt-3">
         <input
           type="file"
           className="border-[1px] p-2 text-lg border-black w-full"
           placeholder="file"
           accept="image/*"
-          onChange={(e) => setFile(e.target.files[0])}
+          onChange={onImageChange}
         />
       </div>
       <button
@@ -153,15 +180,9 @@ const Landing = () => {
                 </a>
               </div>
               <div className="col-md-5 col-lg-5 offset-lg-1 offset-xl-0 d-none d-lg-block align-self-center">
-                <img src={"assets/img/pixelmon/pixelmon15.svg"} />
+                <img src={image} width="100%" />
 
                 {isAuthenticated ? mintNowButton : connectWalletButton}
-
-                <div className="iphone-mockup">
-                  <div className="screen">
-                    <img style={{ width: 261 }} src="assets/img/mob.jpg" />
-                  </div>
-                </div>
               </div>
             </div>
           </div>
