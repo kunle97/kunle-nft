@@ -41,9 +41,9 @@ const Landing = () => {
       var fourDigitNumber = Math.floor(1000 + Math.random() * 9000).toString();
       var fullNFTName = `PixelMon#${fourDigitNumber}`;
       console.log("Name: ", fullNFTName);
-      setName(fullNFTName);
+      // setName(fullNFTName);
       var fullNFTDescription = `Here is your brand new PixelMon! It's name is ${fullNFTName}. Say Hello!`;
-      setDescription(fullNFTDescription);
+      // setDescription(fullNFTDescription);
       console.log("Desc: ", fullNFTDescription);
       var NFTImageSVG = `https://avatars.dicebear.com/api/pixel-art/${fullNFTName}.svg`;
 
@@ -101,11 +101,11 @@ const Landing = () => {
   );
   const mintNowButton = (
     <form onSubmit={onSubmit}>
-      {/* <div className="mt-3">
+      <div className="mt-3">
         <input
           type="text"
           className="border-[1px] p-2 text-lg border-black w-full form-control"
-          placeholder="Name"
+          placeholder="NFT Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
@@ -114,11 +114,11 @@ const Landing = () => {
         <input
           type="text"
           className="border-[1px] p-2 text-lg border-black w-full form-control"
-          placeholder="Description"
+          placeholder="NFT Description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-      </div> */}
+      </div>
       <div className="mt-3">
         <input
           type="file"
@@ -159,15 +159,16 @@ const Landing = () => {
           />
           <div className="container hero">
             <div className="row">
-              <div className="col-12 col-lg-6 col-xl-6 offset-xl-1 align-self-center">
+              <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6 offset-xl-1 align-self-center">
                 <h1>
                   PixelMon is here.&nbsp; Turn any image you want into an NFT.
-                  No Code Experiecnce required!
+                  No code required!
                 </h1>
                 <p>
-                  Simply connect your wallet, select an image from your device
-                  and click &quot;Mint Now!&quot;. Simple as that! Making NFTs
-                  couldn&apos;t be any easier!
+                  Simply connect your wallet, select an image from your device,
+                  give it a name and description and click &quot;Mint
+                  Now!&quot;. Simple as that! Making NFTs couldn&apos;t be any
+                  easier!
                 </p>
                 <button
                   className="btn btn-primary header-button ui-button"
@@ -179,7 +180,7 @@ const Landing = () => {
                   Join The Discord
                 </a>
               </div>
-              <div className="col-md-5 col-lg-5 offset-lg-1 offset-xl-0 d-none d-lg-block align-self-center">
+              <div className="col-sm-12 col-md-6 col-lg-6 offset-lg-1 offset-xl-0  d-lg-block align-self-center">
                 <img src={image} width="100%" />
 
                 {isAuthenticated ? mintNowButton : connectWalletButton}
