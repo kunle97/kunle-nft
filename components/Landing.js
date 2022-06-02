@@ -9,59 +9,25 @@ const web3 = new Web3(Web3.givenProvider);
 
 const Landing = () => {
   const { authenticate, isAuthenticated, logout, user } = useMoralis();
-
-  const connectWalletButton = (
-    <button
-      style={{ width: "100%" }}
-      onClick={authenticate}
-      className="btn btn-primary ui-button"
-      type="button"
-    >
-      Connect Wallet
-    </button>
-  );
-
-  const logoutButton = (
-    <button
-      onClick={logout}
-      className="btn btn-primary ui-button"
-      type="button"
-    >
-      Logout
-    </button>
-  );
-  const mintNowButton = (
-    <button
-      className="btn btn-primary ui-button"
-      type="button"
-      style={{ width: "100%" }}
-    >
-      Mint Now
-    </button>
-  );
   const router = useRouter();
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [file, setFile] = useState("");
 
-  useEffect(() => {
-    console.log(file);
-  }, [file]);
-
-  useEffect(() => {
-    if (!isAuthenticated) {
-      router.push("/");
-    }
-  }, [isAuthenticated]);
-
   const onSubmit = async (e) => {
     e.preventDefault();
+    alert(
+      "Your NFT is being minted. Once you accept the transaction in Metamask the trasaction may take a little while to go through."
+    );
 
     //Custom params
     var fourDigitNumber = Math.floor(1000 + Math.random() * 9000).toString();
     var fullNFTName = `PixelMon #${fourDigitNumber}`;
+    console.log("Name: ", fullNFTName);
+
     var fullNFTDescription = `Here is your brand new PixelMon! It's name is ${fullNFTName}. Say Hello!`;
+    console.log("Name: ", fullNFTDescription);
     var NFTImageSVG = `https://avatars.dicebear.com/api/pixel-art/${fullNFTName}.svg`;
 
     try {
@@ -96,6 +62,57 @@ const Landing = () => {
       alert("Somthing went wrong");
     }
   };
+
+  const connectWalletButton = (
+    <button
+      style={{ width: "100%" }}
+      onClick={authenticate}
+      className="btn btn-primary ui-button"
+      type="button"
+    >
+      Connect Wallet
+    </button>
+  );
+
+  const logoutButton = (
+    <button
+      onClick={logout}
+      className="btn btn-primary ui-button"
+      type="button"
+    >
+      Logout
+    </button>
+  );
+  const mintNowButton = (
+    <form onSubmit={onSubmit}>
+      <div className="mt-3">
+        <input
+          type="file"
+          className="border-[1px] p-2 text-lg border-black w-full"
+          placeholder="file"
+          accept="image/*"
+          onChange={(e) => setFile(e.target.files[0])}
+        />
+      </div>
+      <button
+        type="submit"
+        style={{ width: "100%" }}
+        className="btn btn-primary ui-button animate-pulse"
+      >
+        Mint Now!
+      </button>
+    </form>
+  );
+
+  useEffect(() => {
+    console.log(file);
+  }, [file]);
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      router.push("/");
+    }
+  }, [isAuthenticated]);
 
   return (
     <div style={{ background: "rgb(0,0,0)" }}>
@@ -153,17 +170,13 @@ const Landing = () => {
             <div className="row">
               <div className="col-12 col-lg-6 col-xl-6 offset-xl-1 align-self-center">
                 <h1>
-                  PixelMon is here!&nbsp;Lorem ipsum dolor sit amet, consectetur
-                  adipiscing elit. Nunc quis purus fermentum.
+                  PixelMon is here.&nbsp; Turn any image you want into an NFT.
+                  No Code Experiecnce required!
                 </h1>
                 <p>
-                  Organically grow the holistic world view of disruptive
-                  innovation via workplace diversity and empowerment. Bring to
-                  the table win-win survival strategies to ensure proactive
-                  domination.&nbsp;Lorem ipsum dolor sit amet, consectetur
-                  adipiscing elit. Nunc quis purus fermentum, viverra quam sit
-                  amet, mattis eros. Suspendisse suscipit euismod mi, a molestie
-                  ligula.&nbsp;
+                  Simply connect your wallet, select an image from your device
+                  and click "Mint Now!". Simple as that! Making NFTs couldn't be
+                  any easier!
                 </p>
                 <button
                   className="btn btn-primary header-button ui-button"
