@@ -1,0 +1,68 @@
+* {
+  color: white;
+}
+
+.header-link {
+  color: white;
+  text-decoration: none;
+  margin-left: 15px;
+}
+
+.header-button {
+  margin-right: 15px;
+  border: none;
+}
+
+.ui-button {
+  background: linear-gradient(0.25turn, #e66465, #9198e5);
+  border: none;
+  font-size: 15pt;
+  margin: 25px auto;
+}
+
+h1 {
+}
+
+.hot-drops-section-header {
+  color: white;
+}
+
+.nft-img {
+  width: 215px;
+  margin-bottom: 15px;
+}
+
+.hot-drop-title {
+  font-size: 20pt;
+}
+
+.about-section-heading {
+  margin: 15px 0;
+  color: white;
+}
+
+.about-section-img {
+  width: 80%;
+  margin: 0 auto;
+  display: block;
+}
+
+.team-section-heading {
+  margin: 182px 0 10xpx;
+  text-align: center;
+}
+
+.team-member-img {
+  margin-bottom: 15px;
+}
+
+.team-member-name {
+}
+
+.sub-heading {
+  text-align: center;
+}
+
+.section-subheading {
+}
+
