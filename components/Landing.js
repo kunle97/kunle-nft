@@ -68,10 +68,10 @@ const Landing = () => {
         .send({ from: user.get("ethAddress") });
       const tokenId = response.events.Transfer.returnValues.tokenId;
       alert(
-        `Your NFT has been successfully minted. \nContract Address: ${contractAddress} \nToken ID: ${tokenId} \nNFT Name: ${fullNFTName} \nNFT Description ${fullNFTDescription}`
+        `Your NFT has been successfully minted. \nContract Address: ${contractAddress} \nToken ID: ${tokenId} \nNFT Name: ${fullNFTName} \nNFT Description ${fullNFTDescription} \nView Full Collection at https://testnets.opensea.io/collection/pixelmon-qjoa3h8lg6`
       );
       console.log(
-        `Your NFT has been successfully minted. \nContract Address: ${contractAddress} \nToken ID: ${tokenId} \nNFT Name: ${fullNFTName} \nNFT Description ${fullNFTDescription}`
+        `Your NFT has been successfully minted. \nContract Address: ${contractAddress} \nToken ID: ${tokenId} \nNFT Name: ${fullNFTName} \nNFT Description ${fullNFTDescription} \nView Full Collection at https://testnets.opensea.io/collection/pixelmon-qjoa3h8lg6`
       );
     } catch (err) {
       console.error(err);
